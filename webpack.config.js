@@ -6,7 +6,7 @@ module.exports = {
     context: path.resolve(__dirname, "./src"),
     entry: {
         vendor: ["jquery"],
-        nm: ["./nm/index.js", "./nm/resource/bundle.less"]
+        nm: ["./nm/index.js", "./nm/resource/index.less"]
     },
     output: {
         path: "./assets",

@@ -1,0 +1,34 @@
+{
+  "name": "netease-music-juke-box",
+  "version": "1.0.0",
+  "description": "Netease Music Juke Box",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongrenguang/netease-music-juke-box.git"
+  },
+  "keywords": [
+    "netease",
+    "music"
+  ],
+  "author": "Dong, Renguang <dongrenguang@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dongrenguang/netease-music-juke-box/issues"
+  },
+  "homepage": "https://github.com/dongrenguang/netease-music-juke-box#readme",
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "jquery": "^3.0.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
+  }
+}
