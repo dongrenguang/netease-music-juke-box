@@ -1,2 +1,2 @@
 # netease-music-juke-box
-Netease Music Juke Box
+仿照网易云音乐客户端的网易云音乐的网页实现
