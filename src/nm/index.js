@@ -1,15 +1,16 @@
-import TrackListView from "./view/TrackListView";
-
-$(main);
+import Panel from "./panel/Panel";
+import PlayListView from "./view/PlayListView";
 
 function main()
 {
-    const trackListView = new TrackListView();
-    $(document.body).append(trackListView.$element);
+    const playListView = new PlayListView("play-list");
 
-    $.ajax({
-        url: "http://music.163.com/api/playlist/detail?id=93914274"
-    }).then(res => {
-        trackListView.tracks = res.result.tracks;
-    });
+    const panel = new Panel("panel");
+
+    panel.addSubview(playListView);
+    panel.title = "Title";
+
+    $(document.body).append(panel.$element);
 }
+
+$(main);
