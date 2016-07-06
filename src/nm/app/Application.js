@@ -13,7 +13,10 @@ export default class Application extends NJUApplication
     {
         this.$element.append(`
             <header></header>
-            <main></main>
+            <main class="content">
+                <aside/>
+                <section class="content"/>
+            </main>
             <footer></footer>
         `);
     }
