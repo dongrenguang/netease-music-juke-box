@@ -1,51 +1,96 @@
-const NM_API_URL = "http://music.163.com/api";
+const NM_API_URL = "/api";
 
 export default class ServiceClient
 {
-    getUserPlayLists(uid = "83224766")
+    constructor()
     {
-        return new Promise((resolve, reject) => {
-            $.ajax({
+        this._userId = null;
+    }
+
+    get userId()
+    {
+        return this._userId;
+    }
+
+    async login()
+    {
+        try
+        {
+            await this.__pseudoLogin();
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
+    }
+
+    async __pseudoLogin()
+    {
+        try
+        {
+            this._userId = "83224766";
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
+    }
+
+    async getUserPlayLists(uid = this.userId)
+    {
+        try
+        {
+            const res = await $.ajax({
                 url: `${NM_API_URL}/user/playlist/`,
                 data: {
                     uid,
                     limit: 1000,
                     offset: 0
                 }
-            }).then(res => {
-                if (res.code === 200)
-                {
-                    resolve(res.playlist);
-                }
-                else
-                {
-                    reject(`Response with error code: ${res.code}`);
-                }
-            }, reject);
-        });
+            });
+
+            if (res.code === 200)
+            {
+                return res.playlist;
+            }
+            else
+            {
+                throw new Error(`Response with error code: ${res.code}`);
+            }
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
     }
 
-    getPlayListDetail(playListId)
+    async getPlayListDetail(id)
     {
-        return new Promise((resolve, reject) => {
-            $.ajax({
+        try
+        {
+            const res = await $.ajax({
                 url: `${NM_API_URL}/playlist/detail`,
                 data: {
-                    id: playListId
+                    id
                 }
-            }).then(res => {
-                if (res.code === 200)
-                {
-                    resolve(res.result.tracks);
-                }
-                else
-                {
-                    reject(`Response with error code: ${res.code}`);
-                }
-            }, reject);
-        });
+            });
+
+            if (res.code === 200)
+            {
+                return res.result;
+            }
+            else
+            {
+                throw new Error(`Response with error code: ${res.code}`);
+            }
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
     }
 }
+
 
 let __instance = null;
 ServiceClient.getInstance = function()
@@ -54,6 +99,5 @@ ServiceClient.getInstance = function()
     {
         __instance = new ServiceClient();
     }
-
     return __instance;
 };

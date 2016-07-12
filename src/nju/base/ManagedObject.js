@@ -1,6 +1,6 @@
 export default class ManagedObject
 {
-    constructor(id = null )
+    constructor(id = null)
     {
         this._id = id;
         this._parent = null;
