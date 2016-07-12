@@ -47,9 +47,19 @@ export default class Application extends NJUApplication
         this.addSubview(this.playerView, this.$("> footer"));
     }
 
-    run()
+    async run()
     {
         console.log("Netease Music WebApp is now running...");
+
+        try
+        {
+            await ServiceClient.getInstance().login();
+            this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
 
         // Pseudo login - User ID
         // Refresh PlayListView
