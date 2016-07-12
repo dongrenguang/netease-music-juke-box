@@ -6,7 +6,7 @@ export default class View extends ManagedObject
     {
         super.init();
         this._subviews = [];
-        this.$element = $(`<${this.getElementTag()}/>`);
+        this.$element = $(`<${this.getElementTag()} />`);
         if (this.id !== null)
         {
             this.$element.attr("id", this.id);

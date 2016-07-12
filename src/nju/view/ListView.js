@@ -38,7 +38,7 @@ export default class ListView extends View
             if (this.items.length > 0)
             {
                 this._items.splice(0);
-                this.$element.children("li").remove();
+                this.$container.children().remove();
             }
         }
     }
@@ -57,12 +57,12 @@ export default class ListView extends View
     {
         this._items.push(item);
         const itemType = this.getTypeOfItem(item);
-        const $li = this.$createItem(itemType);
-        this.renderItem(item, $li);
-        this.$element.append($li);
+        const $item = this.$createItem(itemType);
+        this.renderItem(item, $item);
+        this.$container.append($item);
     }
 
-    renderItem(item, $li)
+    renderItem(item, $item)
     {
 
     }
@@ -79,6 +79,6 @@ export default class ListView extends View
 
     $createNewItem(itemType = 0)
     {
-        return $(`<li/>`);
+        return $(`<li />`);
     }
 }
