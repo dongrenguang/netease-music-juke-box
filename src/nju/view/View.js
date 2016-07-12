@@ -43,6 +43,7 @@ export default class View extends ManagedObject
 
 
 
+
     addSubview(view, $container = this.$container)
     {
         if (view instanceof View)
@@ -51,7 +52,6 @@ export default class View extends ManagedObject
             {
                 view.removeFromParent();
             }
-
             view._parent = this;
             this.subviews.push(view);
             view.placeAt($container);
@@ -70,8 +70,8 @@ export default class View extends ManagedObject
 
     removeSubview(view, neverUseAgain = false)
     {
-        const index = this._subviews.indexOf(view);
-        if (index >= 0)
+        const index = this.subviews.indexOf(view);
+        if (index !== -1)
         {
             view._parent = null;
             this.subviews.splice(index, 1);
@@ -86,7 +86,7 @@ export default class View extends ManagedObject
         }
     }
 
-    removeAllSubviews(subviews, neverUseAgain = false)
+    removeAllSubviews(neverUseAgain = false)
     {
         while (this.subviews.length > 0)
         {
@@ -104,7 +104,7 @@ export default class View extends ManagedObject
 
     placeAt(target)
     {
-        const $target = (target instanceof jQuery) ? target : $(target);
+        const $target = (target instanceof jQuery ? target : $(target));
         $target.append(this.$element);
     }
 

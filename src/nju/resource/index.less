@@ -1,5 +1,5 @@
-@import "./variables.less";
-@import "./normalize.less";
+@import "variables.less";
+@import "normalize.less";
 
 .nju-app
 {
@@ -14,10 +14,15 @@
         outline: none;
     }
 
+    .base
+    {
+        font-size: @font-size-base;
+    }
+
     h1, h2, h3
     {
         margin: 0;
-        line-height: 1;
+        line-height: 100%;
     }
 
     h1, .h1
@@ -44,4 +49,4 @@
     }
 }
 
-@import "./theme.less";
+@import "theme.less";

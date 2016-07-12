@@ -13,7 +13,7 @@ export default class Application extends View
         }
         else
         {
-            throw new Error("Application is a singleton object. It can be only instantiated once.")
+            throw new Error("Application is a singleton object. It can only be constructed once.");
         }
     }
 

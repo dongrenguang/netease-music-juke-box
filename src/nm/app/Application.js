@@ -16,12 +16,11 @@ export default class Application extends NJUApplication
     {
         this.$element.append(`
             <header><h1>网易云音乐</h1></header>
-            <main class="content">
+            <main>
                 <aside></aside>
-                <section class="content"><section>
+                <section class="content"></section>
             </main>
-            <footer></footer>
-        `);
+            <footer></footer>`);
     }
 
     _initPlayListView()
@@ -32,6 +31,6 @@ export default class Application extends NJUApplication
 
     run()
     {
-        console.log("Application is now running.");
+        console.log("Netease Music WebApp is now running...");
     }
 }

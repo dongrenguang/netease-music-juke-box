@@ -1,8 +1,8 @@
-const NM_API_URL = "http://music.163.com/api";
+const NM_API_URL = "/api";
 
 export default class ServiceClient
 {
-    getUserPlayLists(uid = "83224766")
+    getUserPlayLists(uid = "40652589")
     {
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -19,33 +19,34 @@ export default class ServiceClient
                 }
                 else
                 {
-                    reject(`Response with error code: ${res.code}`);
+                    reject("Response with error code: " + res.code);
                 }
             }, reject);
         });
     }
 
-    getPlayListDetail(playListId)
+    getPlayListDetail(id)
     {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: `${NM_API_URL}/playlist/detail`,
                 data: {
-                    id: playListId
+                    id
                 }
             }).then(res => {
                 if (res.code === 200)
                 {
-                    resolve(res.result.tracks);
+                    resolve(res.result);
                 }
                 else
                 {
-                    reject(`Response with error code: ${res.code}`);
+                    reject("Response with error code: " + res.code);
                 }
             }, reject);
         });
     }
 }
+
 
 let __instance = null;
 ServiceClient.getInstance = function()
@@ -54,6 +55,5 @@ ServiceClient.getInstance = function()
     {
         __instance = new ServiceClient();
     }
-
     return __instance;
 };

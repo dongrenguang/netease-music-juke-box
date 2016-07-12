@@ -1,4 +1,4 @@
-import View from "../../nju/view/View.js";
+import View from "../../nju/view/View";
 
 export default class PlayListView extends View
 {
@@ -10,6 +10,6 @@ export default class PlayListView extends View
 
     getElementTag()
     {
-        return ("ul");
+        return "ul";
     }
 }
