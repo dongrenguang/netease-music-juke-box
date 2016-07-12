@@ -2,7 +2,7 @@ const NM_API_URL = "/api";
 
 export default class ServiceClient
 {
-    getUserPlayLists(uid = "40652589")
+    getUserPlayLists(uid = "83224766")
     {
         return new Promise((resolve, reject) => {
             $.ajax({
