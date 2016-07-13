@@ -27,6 +27,11 @@ export default class TableView extends ListView
         return "table";
     }
 
+    getItemElementTag()
+    {
+        return "tr";
+    }
+
     renderHeadItem($headItem)
     {
 
@@ -35,10 +40,5 @@ export default class TableView extends ListView
     $createHeadItem()
     {
         return this.$createNewItem();
-    }
-
-    $createNewItem(itemType = 0)
-    {
-        return $(`<tr />`);
     }
 }

@@ -1,11 +1,12 @@
 import TableView from "../../nju/view/TableView";
+import TimeUnit from "../util/TimeUtil";
 
 export default class TrackTableView extends TableView
 {
     init()
     {
         super.init();
-        this.addStyleClass("nm-track-table-view");
+        this.addStyleClass("nm-track-table-view striped");
     }
 
     $createNewItem(itemType = 0)
@@ -15,6 +16,7 @@ export default class TrackTableView extends TableView
                 <td class="name" />
                 <td class="artists" />
                 <td class="album" />
+                <td class="play-time" />
             </tr>
         `);
     }
@@ -24,14 +26,14 @@ export default class TrackTableView extends TableView
         $item.children(".name").text(item.name);
         $item.children(".artists").text(item.artists.map(artist => artist.name).join(", "));
         $item.children(".album").text(item.album.name);
+        $item.children(".play-time").text(TimeUnit.formatPlayTime(item.lMusic.playTime));
     }
 
     renderHeadItem($headItem)
     {
-        this.renderItem({
-            name: "音乐标题",
-            artists: [ { name: "歌手" } ],
-            album: { name: "专辑" }
-        }, $headItem);
+        $headItem.children(".name").text("音乐标题");
+        $headItem.children(".artists").text("歌手");
+        $headItem.children(".album").text("专辑");
+        $headItem.children(".play-time").text("时长");
     }
 }
