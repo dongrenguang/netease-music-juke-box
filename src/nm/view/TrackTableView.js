@@ -23,6 +23,7 @@ export default class TrackTableView extends TableView
 
     renderItem(item, $item)
     {
+        super.renderItem(item, $item);
         $item.children(".name").text(item.name);
         $item.children(".artists").text(item.artists.map(artist => artist.name).join(", "));
         $item.children(".album").text(item.album.name);
@@ -31,6 +32,7 @@ export default class TrackTableView extends TableView
 
     renderHeadItem($headItem)
     {
+        super.renderHeadItem($headItem);
         $headItem.children(".name").text("音乐标题");
         $headItem.children(".artists").text("歌手");
         $headItem.children(".album").text("专辑");
