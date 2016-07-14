@@ -4,8 +4,6 @@ import PlayListView from "../view/PlayListView";
 import PlayerView from "../view/PlayerView";
 import TrackTableView from "../view/TrackTableView";
 
-import ServiceClient from "../service/ServiceClient";
-
 export default class Application extends NJUApplication
 {
     init()
@@ -26,7 +24,8 @@ export default class Application extends NJUApplication
                 <aside class="sidebar"></aside>
                 <section class="content"></section>
             </main>
-            <footer></footer>`);
+            <footer></footer>
+        `);
     }
 
     _initPlayListView()
@@ -45,31 +44,5 @@ export default class Application extends NJUApplication
     {
         this.playerView = new PlayerView("player");
         this.addSubview(this.playerView, this.$("> footer"));
-    }
-
-    async run()
-    {
-        console.log("Netease Music WebApp is now running...");
-
-        try
-        {
-            await ServiceClient.getInstance().login();
-            this.playListView.items = await ServiceClient.getInstance().getUserPlayLists();
-
-            const playlist = await ServiceClient.getInstance().getPlayListDetail(this.playListView.items[0].id);
-            this.playListView.selection = this.playListView.items[0];
-            this.trackTableView.items = playlist.tracks;
-            console.log(playlist.tracks[0]);
-        }
-        catch (e)
-        {
-            console.error(e);
-        }
-
-        // Pseudo login - User ID
-        // Refresh PlayListView
-        // By default, select the first play list on the PlayListView
-        // By default, select the first track of the selected play list.
-        // Play the first track
     }
 }

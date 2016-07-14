@@ -27,7 +27,7 @@
 本项目可以直接通过 npm 安装依赖。
 
 ```shell
-$ git clone https://github.com/MagicCube/netease-music-juke-box.git
+$ git clone https://github.com/dongrenguang/netease-music-juke-box.git
 $ cd netease-music-juke-box
 $ npm install
 ```

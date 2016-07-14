@@ -10,6 +10,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
+    "event": "^1.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-open": "^2.0.0",
@@ -19,19 +20,20 @@
     "rimraf": "^2.5.3",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "wolfy87-eventemitter": "^5.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MagicCube/netease-music-juke-box.git"
+    "url": "git+https://github.com/dongrenguang/netease-music-juke-box.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dong, Renguang <dongrenguang@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MagicCube/netease-music-juke-box/issues"
+    "url": "https://github.com/dongrenguang/netease-music-juke-box/issues"
   },
-  "homepage": "https://github.com/MagicCube/netease-music-juke-box#readme"
+  "homepage": "https://github.com/dongrenguang/netease-music-juke-box#readme"
 }
