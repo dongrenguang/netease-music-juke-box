@@ -105,12 +105,6 @@ export default class ApplicationController extends NJUApplicationController
         {
             const tracks = this.activePlayList.tracks;
             this.application.trackTableView.items = tracks;
-
-            if (!this.activeTrack && tracks && tracks.length > 0)
-            {
-                this.application.trackTableView.selection = tracks[0];
-                this.application.trackTableView.activeTrack = tracks[0];
-            }
         }
         else
         {
