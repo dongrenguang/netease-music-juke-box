@@ -50,6 +50,11 @@ export default class ListView extends View
         this.selectItem(value);
     }
 
+    get selectedId()
+    {
+        return this.getIdOfItem(this.selection);
+    }
+
     getTypeOfItem(item)
     {
         return 0;
@@ -61,12 +66,15 @@ export default class ListView extends View
         {
             return item.id;
         }
-
-        throw new Error("Must implement getIdOfItem(item) in derived class.");
+        else
+        {
+            return null;
+        }
     }
 
     clearItems()
     {
+        this.selection = null;
         if (this.items !== null)
         {
             if (this.items.length > 0)
@@ -120,7 +128,7 @@ export default class ListView extends View
             $item.addClass("selected");
         }
 
-        this.trigger("selectionchannged");
+        this.trigger("selectionchanged");
     }
 
 
