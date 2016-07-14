@@ -6,5 +6,31 @@ export default class PlayerView extends View
     {
         super.init();
         this.addStyleClass("nm-player-view");
+        this._track = null;
+        this._initLayout();
+    }
+
+    _initLayout()
+    {
+        this.$track = $(`
+            <span class="track-name"></span>
+        `);
+        this.$element.append(this.$track);
+    }
+
+    get track()
+    {
+        return this._track;
+    }
+
+    set track(value)
+    {
+        this._track = value;
+        this._onTrackChanged();
+    }
+
+    _onTrackChanged()
+    {
+        this.$track.text(this.track.name);
     }
 }
