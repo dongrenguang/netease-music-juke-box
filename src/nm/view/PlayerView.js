@@ -25,12 +25,10 @@ export default class PlayerView extends View
 
     set track(value)
     {
-        this._track = value;
-        this._onTrackChanged();
-    }
-
-    _onTrackChanged()
-    {
-        this.$track.text(this.track.name);
+        if (this._track !== value)
+        {
+            this._track = value;
+            this.$track.text(this.track.name);
+        }
     }
 }
