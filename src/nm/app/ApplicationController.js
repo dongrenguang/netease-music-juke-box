@@ -7,8 +7,7 @@ export default class ApplicationController extends NJUApplicationController
 {
     createApplication(options)
     {
-        const application = new Application();
-        return application;
+        return new Application();
     }
 
     async run()
