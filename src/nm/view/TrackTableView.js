@@ -7,7 +7,22 @@ export default class TrackTableView extends TableView
     {
         super.init();
         this.addStyleClass("nm-track-table-view striped");
-        // this.$container.on("dblclick", this.getItemElementTag(), this._ondblclick.bind(this));
+        this._activeTrack = null;
+        this.$container.on("dblclick", this.getItemElementTag(), this._ondblclick.bind(this));
+    }
+
+    get activeTrack()
+    {
+        return this._activeTrack;
+    }
+
+    set activeTrack(value)
+    {
+        if (this.activeTrack !== value)
+        {
+            this._activeTrack = value;
+            this.trigger("activetrackchanged");
+        }
     }
 
     $createNewItem(itemType = 0)
@@ -45,5 +60,6 @@ export default class TrackTableView extends TableView
         const $item = $(e.currentTarget);
         const item = $item.data("item");
         this.selectItem(item);
+        this.activeTrack = item;
     }
 }

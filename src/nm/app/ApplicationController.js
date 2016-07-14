@@ -56,7 +56,7 @@ export default class ApplicationController extends NJUApplicationController
     {
         const application = new Application();
         application.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
-        application.trackTableView.on("selectionchanged", this._playerView_selectionchanged.bind(this));
+        application.trackTableView.on("activetrackchanged", this._playerView_selectionchanged.bind(this));
         return application;
     }
 
@@ -106,11 +106,11 @@ export default class ApplicationController extends NJUApplicationController
             const tracks = this.activePlayList.tracks;
             this.application.trackTableView.items = tracks;
 
-            console.log(this.activeTrack);
-            // if (!this.activeTrack && tracks && tracks.length > 0)
-            // {
-            //     this.application.trackTableView.selection = tracks[0];
-            // }
+            if (!this.activeTrack && tracks && tracks.length > 0)
+            {
+                this.application.trackTableView.selection = tracks[0];
+                this.application.trackTableView.activeTrack = tracks[0];
+            }
         }
         else
         {
@@ -142,6 +142,5 @@ export default class ApplicationController extends NJUApplicationController
     _playerView_selectionchanged()
     {
         this.activeTrack = this.application.trackTableView.selection;
-        console.log("_playerView_selectionchanged", this.activeTrack);
     }
 }
