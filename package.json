@@ -28,12 +28,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MagicCube/netease-music-juke-box.git"
+    "url": "git+https://github.com/dongrenguang/netease-music-juke-box.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dong, Renguang <dongrenguang@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MagicCube/netease-music-juke-box/issues"
+    "url": "https://github.com/dongrenguang/netease-music-juke-box/issues"
   },
-  "homepage": "https://github.com/MagicCube/netease-music-juke-box#readme"
+  "homepage": "https://github.com/dongrenguang/netease-music-juke-box#readme"
 }
