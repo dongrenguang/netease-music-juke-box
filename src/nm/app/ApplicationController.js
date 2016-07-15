@@ -55,8 +55,17 @@ export default class ApplicationController extends NJUApplicationController
     createApplication(options)
     {
         const application = new Application();
-        application.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
-        application.trackTableView.on("activetrackchanged", this._playerView_selectionchanged.bind(this));
+        this.playerView = application.playerView;
+
+        this.playListView = application.playListView;
+        this.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
+
+        this.searchView = application.searchView;
+        this.searchView.on("search", this._searchView_search.bind(this));
+
+        this.trackTableView = application.trackTableView;
+        this.trackTableView.on("activetrackchanged", this._playerView_selectionchanged.bind(this));
+
         return application;
     }
 
@@ -85,7 +94,7 @@ export default class ApplicationController extends NJUApplicationController
             this.playLists = await ServiceClient.getInstance().getUserPlayLists();
             if (this.playLists && this.playLists.length > 0)
             {
-                this.application.playListView.selection = this.playLists[0];
+                this.playListView.selection = this.playLists[0];
             }
         }
         catch (e)
@@ -96,7 +105,7 @@ export default class ApplicationController extends NJUApplicationController
 
     _onPlayListsChanged()
     {
-        this.application.playListView.items = this.playLists;
+        this.playListView.items = this.playLists;
     }
 
     _onActivePlayListChanged()
@@ -104,11 +113,11 @@ export default class ApplicationController extends NJUApplicationController
         if (this.activePlayList)
         {
             const tracks = this.activePlayList.tracks;
-            this.application.trackTableView.items = tracks;
+            this.trackTableView.items = tracks;
         }
         else
         {
-            this.application.trackTableView.items = [];
+            this.trackTableView.items = [];
         }
     }
 
@@ -116,7 +125,7 @@ export default class ApplicationController extends NJUApplicationController
     {
         if (this.activeTrack)
         {
-            this.application.playerView.track = this.activeTrack;
+            this.playerView.track = this.activeTrack;
         }
     }
 
@@ -124,7 +133,7 @@ export default class ApplicationController extends NJUApplicationController
     {
         try
         {
-            const playList = await ServiceClient.getInstance().getPlayListDetail(this.application.playListView.selectedId);
+            const playList = await ServiceClient.getInstance().getPlayListDetail(this.playListView.selectedId);
             this.activePlayList = playList;
         }
         catch (e)
@@ -135,6 +144,11 @@ export default class ApplicationController extends NJUApplicationController
 
     _playerView_selectionchanged()
     {
-        this.activeTrack = this.application.trackTableView.selection;
+        this.activeTrack = this.trackTableView.selection;
+    }
+
+    _searchView_search(e)
+    {
+        console.log(this.searchView.text);
     }
 }
