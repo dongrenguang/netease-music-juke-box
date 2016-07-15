@@ -1,15 +1,24 @@
 import View from "../view/View";
 
-window.$app = null;
-
 export default class Application extends View
 {
+    static _instance = null;
+
+    static getInstance()
+    {
+        if (Application._instance === null)
+        {
+            throw new Error("Application has not been instantiated yet.");
+        }
+        return Application._instance;
+    }
+
     constructor(...args)
     {
         super(...args);
-        if (window.$app === null)
+        if (Application._instance === null)
         {
-            window.$app = this;
+            Application._instance = this;
         }
         else
         {
@@ -21,10 +30,5 @@ export default class Application extends View
     {
         super.init();
         this.addStyleClass("nju-app");
-    }
-
-    run()
-    {
-
     }
 }
