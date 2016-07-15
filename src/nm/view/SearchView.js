@@ -14,8 +14,8 @@ export default class SearchView extends View
 
     _initLayout()
     {
-        this.$element.append(`<span class="icon" />`);
-        this.$input = $(`<input type="search" />`);
+        this.$element.append(`<span class="icon iconfont icon-search" />`);
+        this.$input = $(`<input type="search" placeholder="搜索音乐" />`);
         this.$element.append(this.$input);
     }
 

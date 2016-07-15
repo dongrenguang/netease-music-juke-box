@@ -126,9 +126,8 @@ export default class ListView extends View
         {
             const $item = this.$getItem(item);
             $item.addClass("selected");
+            this.trigger("selectionchanged");
         }
-
-        this.trigger("selectionchanged");
     }
 
 

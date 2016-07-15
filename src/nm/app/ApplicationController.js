@@ -112,8 +112,7 @@ export default class ApplicationController extends NJUApplicationController
     {
         if (this.activePlayList)
         {
-            const tracks = this.activePlayList.tracks;
-            this.trackTableView.items = tracks;
+            this.trackTableView.items = this.activePlayList.tracks;
         }
         else
         {
@@ -133,8 +132,11 @@ export default class ApplicationController extends NJUApplicationController
     {
         try
         {
-            const playList = await ServiceClient.getInstance().getPlayListDetail(this.playListView.selectedId);
-            this.activePlayList = playList;
+            if (this.playListView.selectedId)
+            {
+                const playList = await ServiceClient.getInstance().getPlayListDetail(this.playListView.selectedId);
+                this.activePlayList = playList;
+            }
         }
         catch (e)
         {
@@ -147,8 +149,19 @@ export default class ApplicationController extends NJUApplicationController
         this.activeTrack = this.trackTableView.selection;
     }
 
-    _searchView_search(e)
+    async _searchView_search(e)
     {
-        console.log(this.searchView.text);
+        try
+        {
+            this.playListView.selectItem();
+            this.activePlayList = {
+                id: "search",
+                tracks: await ServiceClient.getInstance().search(this.searchView.text)
+            };
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
     }
 }
