@@ -62,6 +62,7 @@ export default class ApplicationController extends NJUApplicationController
 
         this.searchView = application.searchView;
         this.searchView.on("search", this._searchView_search.bind(this));
+        this.searchView.on("oninput", this._searchView_oninput.bind(this));
 
         this.trackTableView = application.trackTableView;
         this.trackTableView.on("activetrackchanged", this._playerView_selectionchanged.bind(this));
@@ -77,6 +78,7 @@ export default class ApplicationController extends NJUApplicationController
         {
             await ServiceClient.getInstance().login();
             await this._loadUserPlayLists();
+            console.log(await ServiceClient.getInstance().search("郭德纲", true));
         }
         catch (e)
         {
@@ -157,6 +159,19 @@ export default class ApplicationController extends NJUApplicationController
             this.activePlayList = {
                 tracks: await ServiceClient.getInstance().search(this.searchView.text)
             };
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
+    }
+
+    async _searchView_oninput()
+    {
+        try
+        {
+            const searchText = this.searchView.text;
+            console.log(searchText);
         }
         catch (e)
         {
