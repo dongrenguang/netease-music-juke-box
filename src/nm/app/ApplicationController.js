@@ -153,9 +153,8 @@ export default class ApplicationController extends NJUApplicationController
     {
         try
         {
-            this.playListView.selectItem();
+            this.playListView.selectItem(null);
             this.activePlayList = {
-                id: "search",
                 tracks: await ServiceClient.getInstance().search(this.searchView.text)
             };
         }
