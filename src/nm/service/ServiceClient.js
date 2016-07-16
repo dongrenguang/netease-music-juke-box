@@ -29,9 +29,9 @@ export default class ServiceClient
         {
             await this.__pseudoLogin();
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -41,9 +41,9 @@ export default class ServiceClient
         {
             this._userId = "83224766";
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -69,9 +69,9 @@ export default class ServiceClient
                 throw new Error(`Response with error code: ${res.code}`);
             }
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -95,9 +95,9 @@ export default class ServiceClient
                 throw new Error(`Response with error code: ${res.code}`);
             }
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -131,9 +131,9 @@ export default class ServiceClient
                 throw new Error(`Response with error code: ${res.code}`);
             }
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 }

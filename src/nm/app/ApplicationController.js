@@ -83,9 +83,9 @@ export default class ApplicationController extends NJUApplicationController
             await ServiceClient.getInstance().login();
             await this._loadUserPlayLists();
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -102,9 +102,9 @@ export default class ApplicationController extends NJUApplicationController
                 this.playListView.selection = this.playLists[0];
             }
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -143,9 +143,9 @@ export default class ApplicationController extends NJUApplicationController
                 this.activePlayList = playList;
             }
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 
@@ -163,9 +163,9 @@ export default class ApplicationController extends NJUApplicationController
                 tracks: await ServiceClient.getInstance().search(this.searchView.text)
             };
         }
-        catch (e)
+        catch (error)
         {
-            console.error(e);
+            console.error(error);
         }
     }
 }
