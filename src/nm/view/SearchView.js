@@ -69,7 +69,7 @@ export default class SearchView extends View
         if (e.keyCode === 13)
         {
             this.search();
-            this.trigger("enterkeydown", e.keyCode);
+            this.trigger("enterkeydown");
         }
     }
 

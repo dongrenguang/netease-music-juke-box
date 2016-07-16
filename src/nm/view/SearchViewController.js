@@ -86,7 +86,6 @@ export default class SearchViewController extends ViewController
 
     _onenterkeydown(e)
     {
-        console.log(e);
         this.hideSuggestionListView();
     }
 
