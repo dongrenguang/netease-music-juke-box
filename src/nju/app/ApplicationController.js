@@ -42,6 +42,17 @@ export default class ApplicationController extends ViewController
         return new Application();
     }
 
+    initView()
+    {
+        super.initView();
+        this.initApplication();
+    }
+
+    initApplication()
+    {
+
+    }
+
     run()
     {
 
