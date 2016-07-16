@@ -1,12 +1,17 @@
 .nm-search-view
 {
+    @search-box-width: 240px;
+    @search-box-height: 24px;
+
     background: white;
     border-radius: 12px;
+    position: relative;
+    z-index: 9;
 
     input[type=search]
     {
-        width: 240px;
-        height: 24px;
+        width: @search-box-width;
+        height: @search-box-height;
         background: transparent;
         border: none;
     }
@@ -16,5 +21,30 @@
         color: gray;
         margin-left: 4px;
         margin-right: 4px;
+    }
+
+    .nm-suggestion-list-view
+    {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: @search-box-height + 5;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+        > li
+        {
+            height: @nm-list-item-height;
+            line-height: @nm-list-item-height;
+            background: @body-bg;
+            color: @text-color;
+            padding-left: 26px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &:hover
+            {
+                background: @nm-selected-bg;
+            }
+        }
     }
 }
