@@ -100,4 +100,40 @@ export default class ServiceClient
             console.error(e);
         }
     }
+
+    async search(keyword, suggest = false)
+    {
+        try
+        {
+            let res = await $.ajax({
+                url: suggest ? `${NM_API_URL}/search/suggest/web` : `${NM_API_URL}/search/get/`,
+                method: "post",
+                data: {
+                    s: keyword,
+                    type: 1,
+                    offset: 0,
+                    limit: 100,
+                    sub: false
+                }
+            });
+
+            if (res)
+            {
+                res = JSON.parse(res);
+            }
+
+            if (res.code === 200)
+            {
+                return res.result.songs;
+            }
+            else
+            {
+                throw new Error(`Response with error code: ${res.code}`);
+            }
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
+    }
 }
