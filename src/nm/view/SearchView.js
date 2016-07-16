@@ -1,5 +1,6 @@
-import ListView from "../../nju/view/ListView";
 import View from "../../nju/view/View";
+
+import SuggestionListView from "./SuggestionListView";
 
 export default class SearchView extends View
 {
@@ -8,11 +9,9 @@ export default class SearchView extends View
         super.init();
         this.addStyleClass("nm-search-view");
         this._initLayout();
-        this._initSubviews();
 
         this.$element.on("keydown", this._onkeydown.bind(this));
         this.$element.on("click", "span.icon", this._icon_onclick.bind(this));
-        this.$element.on("input", this._oninput.bind(this));
     }
 
     _initLayout()
@@ -20,16 +19,26 @@ export default class SearchView extends View
         this.$element.append(`<span class="icon iconfont icon-search" />`);
         this.$input = $(`<input type="search" placeholder="搜索音乐" />`);
         this.$element.append(this.$input);
+        this._initSuggestionListView();
+
+        this.$input.on("focus", () => this.trigger("focus"));
+        this.$input.on("blur", () => this.trigger("blur"));
+        let timeout = null;
+        this.$input.on("input", () => {
+            if (timeout)
+            {
+                window.clearTimeout(timeout);
+                timeout = null;
+            }
+            timeout = window.setTimeout(() => {
+                this.trigger("input");
+            }, 300);
+        });
     }
 
-    _initSubviews()
+    _initSuggestionListView()
     {
-        this._initSuggestListView();
-    }
-
-    _initSuggestListView()
-    {
-        
+        this.suggestionListView = new SuggestionListView("suggestion-list-view");
     }
 
     get text()
@@ -65,10 +74,5 @@ export default class SearchView extends View
     _icon_onclick(e)
     {
         this.search();
-    }
-
-    _oninput(e)
-    {
-        this.trigger("oninput");
     }
 }

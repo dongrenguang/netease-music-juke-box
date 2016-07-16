@@ -13,6 +13,28 @@ export default class ApplicationController extends NJUApplicationController
         this._activeTrack = null;
     }
 
+    createApplication(options)
+    {
+        const application = new Application();
+        return application;
+    }
+
+    initApplication()
+    {
+        super.initApplication();
+
+        this.playerView = this.application.playerView;
+
+        this.playListView = this.application.playListView;
+        this.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
+
+        this.searchView = this.application.searchView;
+        this.searchView.on("search", this._searchView_search.bind(this));
+
+        this.trackTableView = this.application.trackTableView;
+        this.trackTableView.on("activetrackchanged", this._playerView_selectionchanged.bind(this));
+    }
+
     get playLists()
     {
         return this._playLists;
@@ -52,24 +74,6 @@ export default class ApplicationController extends NJUApplicationController
         }
     }
 
-    createApplication(options)
-    {
-        const application = new Application();
-        this.playerView = application.playerView;
-
-        this.playListView = application.playListView;
-        this.playListView.on("selectionchanged", this._playListView_selectionchanged.bind(this));
-
-        this.searchView = application.searchView;
-        this.searchView.on("search", this._searchView_search.bind(this));
-        this.searchView.on("oninput", this._searchView_oninput.bind(this));
-
-        this.trackTableView = application.trackTableView;
-        this.trackTableView.on("activetrackchanged", this._playerView_selectionchanged.bind(this));
-
-        return application;
-    }
-
     async run()
     {
         console.log("Netease Music WebApp is now running...");
@@ -78,7 +82,6 @@ export default class ApplicationController extends NJUApplicationController
         {
             await ServiceClient.getInstance().login();
             await this._loadUserPlayLists();
-            console.log(await ServiceClient.getInstance().search("郭德纲", true));
         }
         catch (e)
         {
@@ -159,19 +162,6 @@ export default class ApplicationController extends NJUApplicationController
             this.activePlayList = {
                 tracks: await ServiceClient.getInstance().search(this.searchView.text)
             };
-        }
-        catch (e)
-        {
-            console.error(e);
-        }
-    }
-
-    async _searchView_oninput()
-    {
-        try
-        {
-            const searchText = this.searchView.text;
-            console.log(searchText);
         }
         catch (e)
         {
