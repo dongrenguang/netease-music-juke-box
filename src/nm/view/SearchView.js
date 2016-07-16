@@ -23,6 +23,7 @@ export default class SearchView extends View
 
         this.$input.on("focus", () => this.trigger("focus"));
         this.$input.on("blur", () => this.trigger("blur"));
+        this.$input.on("click", () => this.trigger("clicked"));
         let timeout = null;
         this.$input.on("input", () => {
             if (timeout)
@@ -68,6 +69,7 @@ export default class SearchView extends View
         if (e.keyCode === 13)
         {
             this.search();
+            this.trigger("enterkeydown", e.keyCode);
         }
     }
 

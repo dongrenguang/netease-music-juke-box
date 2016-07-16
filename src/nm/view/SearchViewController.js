@@ -14,7 +14,9 @@ export default class SearchViewController extends ViewController
     {
         this.view.on("focus", this._onfocus.bind(this));
         this.view.on("blur", this._onblur.bind(this));
-        this.view.on("input", this._onChange.bind(this));
+        this.view.on("clicked", this._onclicked.bind(this));
+        this.view.on("input", this._onchange.bind(this));
+        this.view.on("enterkeydown", this._onenterkeydown.bind(this));
 
         this.suggestionListView = this.view.suggestionListView;
         this.suggestionListView.on("itemclicked", this._suggestionListView_itemclicked.bind(this));
@@ -55,7 +57,12 @@ export default class SearchViewController extends ViewController
         this.hideSuggestionListView();
     }
 
-    async _onChange(e)
+    _onclicked(e)
+    {
+        this.showSuggestionListView();
+    }
+
+    async _onchange(e)
     {
         try
         {
@@ -75,6 +82,12 @@ export default class SearchViewController extends ViewController
         {
             console.error(e);
         }
+    }
+
+    _onenterkeydown(e)
+    {
+        console.log(e);
+        this.hideSuggestionListView();
     }
 
     _suggestionListView_itemclicked()
