@@ -115,6 +115,7 @@ export default class ApplicationController extends NJUApplicationController
 
     _onActivePlayListChanged()
     {
+        // TODO id === "search"
         if (this.activePlayList)
         {
             this.trackTableView.items = this.activePlayList.tracks;
@@ -160,6 +161,7 @@ export default class ApplicationController extends NJUApplicationController
         {
             this.playListView.selectItem(null);
             this.activePlayList = {
+                id: "search",
                 tracks: await ServiceClient.getInstance().search(this.searchView.text)
             };
         }

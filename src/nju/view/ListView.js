@@ -36,6 +36,7 @@ export default class ListView extends View
 
     set items(value)
     {
+        // TODO optimize
         this.clearItems();
         this.addItems(value);
     }
@@ -126,8 +127,19 @@ export default class ListView extends View
         {
             const $item = this.$getItem(item);
             $item.addClass("selected");
-            this.trigger("selectionchanged");
         }
+
+        this.trigger("selectionchanged");
+    }
+
+    showSelection()
+    {
+        this.removeStyleClass("hide-selection");
+    }
+
+    hideSelection()
+    {
+        this.addStyleClass("hide-selection");
     }
 
 
