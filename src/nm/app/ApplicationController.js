@@ -118,6 +118,10 @@ export default class ApplicationController extends NJUApplicationController
         if (this.activePlayList)
         {
             this.trackTableView.items = this.activePlayList.tracks;
+            if (this.activePlayList.id === "search")
+            {
+                this.playListView.selection = null;
+            }
         }
         else
         {
@@ -158,8 +162,8 @@ export default class ApplicationController extends NJUApplicationController
     {
         try
         {
-            this.playListView.selectItem(null);
             this.activePlayList = {
+                id: "search",
                 tracks: await ServiceClient.getInstance().search(this.searchView.text)
             };
         }

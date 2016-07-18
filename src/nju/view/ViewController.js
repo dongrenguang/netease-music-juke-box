@@ -16,9 +16,9 @@ export default class ViewController extends ManagedObject
 
     createView(options)
     {
-        return new View();
+        throw new Error("createView(option) must be overrided in the derived class.");
     }
-    
+
     initView(options)
     {
         this.applyViewOptions(options);
