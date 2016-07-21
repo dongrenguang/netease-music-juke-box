@@ -6,7 +6,7 @@ export default class Application extends View
 
     static getInstance()
     {
-        if (Application._instance === null)
+        if (!Application._instance)
         {
             throw new Error("Application has not been instantiated yet.");
         }
