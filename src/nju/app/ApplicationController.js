@@ -7,7 +7,7 @@ export default class ApplicationController extends ViewController
 
     static getInstance()
     {
-        if (ApplicationController._instance === null)
+        if (!ApplicationController._instance)
         {
             throw new Error("ApplicationController has not been instantiated yet.");
         }
