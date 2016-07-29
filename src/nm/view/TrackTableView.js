@@ -1,4 +1,4 @@
-import TableView from "../../nju/view/TableView";
+import TableView from "nju/view/TableView";
 import TimeUnit from "../util/TimeUtil";
 
 export default class TrackTableView extends TableView
